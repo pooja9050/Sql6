@@ -27,7 +27,7 @@ SELECT a1.player_id, a1.event_date,(
 ) AS 'games_played_so_far' from Activity a1;
 
 
-175. Combine Two Tables
+#175. Combine Two Tables
 # Write your MySQL query statement below
 SELECT p.firstName, p.lastName, a.city, a.state 
 FROM Person p LEFT JOIN Address a ON p.personId = a.personId;
@@ -35,5 +35,14 @@ FROM Person p LEFT JOIN Address a ON p.personId = a.personId;
 #Alternative RIGHT JOIN
 SELECT p.firstName, p.lastName, a.city, a.state 
 FROM Address a RIGHT JOIN Person p ON p.personId = a.personId;
+
+#612. Shortest Distance in a Plane
+# Write your MySQL query statement below
+SELECT p1.x, p2x, p1.y,p2.y, SQRT(POW(p2.x - p1.x,2) + POW())
+SELECT ROUND(MIN(SQRT(POW(p1.x - p2.x, 2) + POW(p1.y - p2.y, 2))), 2) AS shortest
+FROM Point2D p1
+JOIN Point2D p2 ON p1.x != p2.x OR p1.y != p2.y;
+
+
 
 
