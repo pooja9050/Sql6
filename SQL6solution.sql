@@ -43,6 +43,22 @@ SELECT ROUND(MIN(SQRT(POW(p1.x - p2.x, 2) + POW(p1.y - p2.y, 2))), 2) AS shortes
 FROM Point2D p1
 JOIN Point2D p2 ON p1.x != p2.x OR p1.y != p2.y;
 
+#2474. Customers With Strictly Increasing Purchases
+# Write your MySQL query statement below
+WITH CTE AS(
+    SELECT customer_id, YEAR(order_date) AS 'year', SUM(price) as 'price'
+    FROM Orders
+    GROUP BY year, customer_id
+    ORDER BY Customer_id, year
+)
+
+SELECT c1.customer_id
+FROM CTE c1 LEFT JOIN CTE c2
+ON c1.customer_id = c2.customer_id AND c1.year+1 = c2.year AND c1.price < c2.price
+GROUP BY 1
+Having
+COUNT(*) - COUNT(c2.customer_id) = 1;
+
 
 
 
